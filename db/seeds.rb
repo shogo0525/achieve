@@ -17,6 +17,7 @@
 end
 =end
 
+=begin
 100.times do |n|
     title = Faker::Pokemon.name
     content = Faker::Pokemon.location
@@ -25,3 +26,4 @@ end
                  user_id: 1
                  )
 end
+=end

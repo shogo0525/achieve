@@ -55,6 +55,10 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development do
+  gem 'letter_opener'
+end
+
 gem 'rails_12factor', group: :production
 
 gem 'twitter-bootstrap-rails'
