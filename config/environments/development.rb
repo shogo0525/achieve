@@ -1,4 +1,7 @@
 Rails.application.configure do
+
+  #better_errorの設定
+  BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
   
   #letter_openerの設定
   #config.action_mailer.default_url_options = { host: 'dive-into-code-shogo0525.c9users.io/', port: $PORT, protocol: 'https' }
