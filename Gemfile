@@ -66,3 +66,8 @@ gem 'twitter-bootstrap-rails'
 gem "devise"
 
 gem 'faker'
+
+gem 'therubyracer', platforms: :ruby
+gem 'rails_admin'
+
+gem 'cancan'
