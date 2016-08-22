@@ -3,9 +3,8 @@ class BlogsController < ApplicationController
   before_action :set_blog, only:[:edit, :update, :destroy]
   
   def index
-    @blogs = Blog.all
-    #raise
-    #binding.pry
+    #@blogs = Blog.all
+    @blogs = Blog.order(created_at: :desc)
   end
   
   def new
@@ -27,7 +26,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blogs_params)
     @blog.user_id = current_user.id
     if @blog.save
-      redirect_to root_path, notice: "ブログを作成しました！"
+      redirect_to blogs_path, notice: "ブログを作成しました！"
       #NoticeMailer.sendmail_blog(@blog).deliver
     else
       render :new
