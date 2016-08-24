@@ -18,6 +18,17 @@ class CommentsController < ApplicationController
       end
     end
   end
+  
+  def destroy
+    #@comment = current_user.comments.build(comment_params)
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    
+    #redirect_to blogs_path, notice: "ブログを削除しました！"
+    respond_to do |format|
+      format.js { render :index }
+    end
+  end
 
   private
     # ストロングパラメーター
