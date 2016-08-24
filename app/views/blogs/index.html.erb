@@ -9,7 +9,9 @@
         <% @blogs.each do |blog| %>
             <div class="row">
                 <%= profile_img(blog.user) if profile_img(blog.user) %> <%= blog.user.name %>が投稿しました。（<%= blog.created_at %>）
-                <h5><strong><%= blog.title %></strong></h5>
+                <%= link_to blog_path(blog) do %>
+                  <h5><strong><%= blog.title %></strong></h5>
+                <% end %>
                 <p><%= blog.content %></p>
                 <%= link_to "編集", edit_blog_path(blog.id), class: 'btn btn-default btn-sm btn-success' %>
                 <%= link_to '削除', blog_path(blog.id), method: :delete, data: {confirm: "本当に削除していいですか？?"}, class: 'btn btn-default btn-sm btn btn-danger' %>

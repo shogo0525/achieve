@@ -13,11 +13,15 @@ Rails.application.routes.draw do
   #resources :application
 
   #ブログ
-  resources :blogs, only:[:index, :new, :create, :edit, :update, :destroy] do
+  #resources :blogs, only:[:index, :new, :create, :edit, :update, :destroy] do
+  resources :blogs do
+    resources :comments
+    
     collection do
       post :confirm
     end
   end
+  
   get "blogs" => "blogs#index"
   
   #お問い合わせ（課題）
