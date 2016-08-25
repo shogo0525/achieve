@@ -11,5 +11,7 @@
         <strong>登録時間:</strong>
         <%= @user.created_at.strftime("%y/%m/%d %p %l:%M") %>
       </p>
+    <%# render partial: 'followed_users' %>
+    <%= render partial: 'followers' %>
     </div>
 </div>
