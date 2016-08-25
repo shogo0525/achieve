@@ -6,8 +6,10 @@
         <p><%= user.name %></p>
         <p><%= user.email %></p>
         <p><%= link_to '詳細', user_path(user) %></p>
-        <%= render 'follow_form', user: user %>
-        <%# render 'follow_form', user: user, current_user: @current_user %>
+        
+        <% unless current_user.id == user.id %>
+          <%= render 'follow_form', user: user %>
+        <% end %>
       </div>
   <% end %>
 </div>
