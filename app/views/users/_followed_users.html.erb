@@ -1,11 +1,9 @@
+<h2>あなたがフォローしている人</h2>
 <ul>
   <% current_user.followed_users.each do |followed_user| %>
-    
     <li>
-      <p class="left">ユーザー名<%= followed_user.name %>さんがコメントしました。</p>
-      <p class="left">メールアドレス<%= followed_user.email %></p>
-
+      <%= profile_img(followed_user) %>
+      ユーザー名：<%= followed_user.name %>
     </li>
-    
   <% end %>
 </ul>
