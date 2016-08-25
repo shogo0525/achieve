@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships, source: :follower
+  
+  #Taskモデルへのアソシエーション
+  has_many :tasks, dependent: :destroy
 
   #carrierwave用の設定
   mount_uploader :avatar, AvatarUploader

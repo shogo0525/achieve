@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   #resources :application
   
   #ユーザー
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :edit, :update] do
+    resources :tasks
+  end
   
   #フォロー
   resources :relationships, only: [:create, :destroy]
