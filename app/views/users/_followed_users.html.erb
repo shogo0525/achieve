@@ -1,6 +1,6 @@
-<h2>あなたがフォローしている人</h2>
+<h2><%= user.name %>がフォローしている人</h2>
 <ul>
-  <% current_user.followed_users.each do |followed_user| %>
+  <% user.followed_users.each do |followed_user| %>
     <li>
       <%= profile_img(followed_user) %>
       ユーザー名：<%= followed_user.name %>
