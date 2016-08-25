@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'relationships/create'
-
-  get 'relationships/destroy'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: {
@@ -17,7 +13,7 @@ Rails.application.routes.draw do
   #resources :application
   
   #ユーザー
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show]
   
   #フォロー
   resources :relationships, only: [:create, :destroy]
