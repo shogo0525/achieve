@@ -10,8 +10,6 @@ class TasksController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
   def show
   end
 
@@ -19,7 +17,6 @@ class TasksController < ApplicationController
     @task = Task.new(user_id: params[:user_id], charge_id: params[:user_id])
   end
 
-  # GET /tasks/1/edit
   def edit
   end
 
@@ -28,7 +25,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to user_task_url, notice: 'タスクを登録しました。' }
+        format.html { redirect_to user_tasks_url, notice: 'タスクを登録しました。' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -37,8 +34,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tasks/1
-  # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
       if @task.update(task_params)
@@ -51,8 +46,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
   def destroy
     @task.destroy
     respond_to do |format|
