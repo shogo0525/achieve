@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   
   #ユーザー、タスク
   resources :users, only: [:index, :show, :edit, :update] do
-    resources :tasks do
-      get 'destroy_all'
-    end
+    #resources :tasks do
+    #  get 'destroy_all'
+    #end
+    resources :tasks
     resources :submit_requests, shallow: true do
       get 'approve'
       get 'unapprove'
@@ -25,6 +26,11 @@ Rails.application.routes.draw do
         get 'inbox'
       end
     end
+  end
+  
+  #会話
+  resources :conversations do
+    resources :messages
   end
   
   #フォロー

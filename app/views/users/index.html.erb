@@ -7,8 +7,21 @@
         <p><%= user.email %></p>
         <p><%= link_to '詳細', user_path(user) %></p>
         
+        <% if false %>
         <% unless current_user.id == user.id %>
           <%= render 'follow_form', user: user %>
+        <% end %>
+        <% end %>
+        
+        
+        <% if user.id != current_user.id %>
+          <li>
+            <div class="item">
+              <%= link_to user.name, user %>
+              <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%>
+            </div>
+            <%= render partial: 'follow_form', locals: { user: user } if signed_in?   %>
+          </li>
         <% end %>
       </div>
   <% end %>
