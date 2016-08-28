@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   
   #ユーザー、タスク
   resources :users, only: [:index, :show, :edit, :update] do
-    resources :tasks
+    resources :tasks do
+      get 'destroy_all'
+    end
     resources :submit_requests, shallow: true do
       get 'approve'
       get 'unapprove'

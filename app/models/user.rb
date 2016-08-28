@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   
   #Taskモデルへのアソシエーション
   has_many :tasks, dependent: :destroy
+  
+  #SubmitRequestモデルへのアソシエーション
+  has_many :submit_request, dependent: :destroy
 
   #carrierwave用の設定
   mount_uploader :avatar, AvatarUploader

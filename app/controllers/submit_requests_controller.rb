@@ -1,8 +1,13 @@
 class SubmitRequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_submit_request, only: [:show, :edit, :update, :destroy]
+  before_action :submit_params, only: [:approve, :unapprove]
   
   def index
     @submit_requests = SubmitRequest.where(user_id: current_user.id).order(updated_at: :desc)
+    @tasks = Task.where(user_id: params[:user_id]).where.not(done: true, status: 1)
+                 .order(updated_at: :desc)
+    @user = User.find(params[:user_id])
   end
 
   def new
@@ -13,7 +18,7 @@ class SubmitRequestsController < ApplicationController
     # フォーム送信用に取得
     @user = current_user
     # リクエスト新規作成用
-    @submit_request = current_user.submit_requests.build(status: 1)
+    @submit_request = current_user.submit_request.build(status: 1)
   end
 
   def create
@@ -56,13 +61,34 @@ class SubmitRequestsController < ApplicationController
   def destroy
   end
 
+  # status = 2
   def approve
+    @submit_request.update(status: 2)
+    @submit_request.task.update(status: 2)
+    @submit_requests = SubmitRequest.where(charge_id: current_user.id).order(updated_at: :desc)
+    respond_to do |format|
+      format.js { render :reaction_inbox }
+    end
   end
-
+  
+  # status = 9
   def unapprove
+    @submit_request.update(status: 9)
+    @submit_request.task.update(status: 9, charge_id: @submit_request.user_id)
+    @submit_requests = SubmitRequest.where(charge_id: current_user.id).order(updated_at: :desc)
+    respond_to do |format|
+      format.js { render :reaction_inbox }
+    end
   end
-
+  
+  # status = 8
   def reject
+    @submit_request.update(status: 8)
+    @submit_request.task.update(status: 8, charge_id: current_user.id)
+    @submit_requests = SubmitRequest.where(charge_id: current_user.id).order(updated_at: :desc)
+    respond_to do |format|
+      format.js { render :reaction_inbox }
+    end
   end
 
   def inbox
@@ -77,5 +103,9 @@ class SubmitRequestsController < ApplicationController
     def submit_request_params
       params.require(:submit_request).permit(:task_id, :user_id, :charge_id, :status, :message)
     end
+    
+   def submit_params
+      @submit_request = SubmitRequest.find(params[:submit_request_id].to_i)
+   end
 
 end
