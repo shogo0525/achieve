@@ -1,0 +1,19 @@
+<h2>お知らせ</h2>
+<div class="child row">
+  <div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+    <ul>
+      <% @notifications.each do |notification| %>
+      <hr>
+        <li>
+          <p class="left">
+            <%= notification.comment.user.try(:name) %>さんが
+            あなたのブログ（<%= link_to notification.comment.blog.title, blog_path(notification.comment.blog) %>）にコメントしました。
+          </p>
+          <p class="right">
+          <%= if notification.read? then "既読" else "未読" end %> / <%= notification.created_at %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

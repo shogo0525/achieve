@@ -26,5 +26,7 @@ module Achieve
     config.action_view.field_error_proc = proc { |html_tag, _| html_tag }
     
     config.time_zone = 'Tokyo'
+    
+    config.web_console.whitelisted_ips = '0.0.0.0/0'
   end
 end
