@@ -47,14 +47,18 @@ group :development, :test do
 
   #20160815 宮下さん指導
   gem 'pry-rails'
-
   gem 'pry-byebug'
-
   gem 'pry-doc'
-
   gem 'pry'
-
   gem 'better_errors'
+  
+  #Capistranoで使うgem
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  
 end
 
 group :development do
@@ -89,3 +93,6 @@ gem 'pusher'
 
 #s3に保存させるためのgem
 gem 'fog'
+
+gem 'dotenv-rails'
+gem 'unicorn'
