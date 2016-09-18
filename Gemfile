@@ -94,5 +94,5 @@ gem 'pusher'
 #s3に保存させるためのgem
 gem 'fog'
 
-gem 'dotenv-rails'
+gem 'dotenv-rails', group: :production
 gem 'unicorn'
